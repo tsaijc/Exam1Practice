@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jocelyn Tsai.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +110,23 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    upperright = rectangle.get_upper_right_corner()
+    lowerleft = rectangle.get_lower_left_corner()
+    line = rg.Line(upperright,lowerleft)
+    line.attach_to(window)
+    line.arrow = 'last'
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -181,6 +198,22 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
+
+    rect.attach_to(win)
+    upperleft = rect.get_upper_left_corner()
+    lowerright = rect.get_lower_right_corner()
+
+    for k in range(n-1):
+        upperleft.x = upperleft.x - delta
+        upperleft.y = upperleft.y - delta
+
+        lowerright.x = lowerright.x + delta
+        lowerright.y = lowerright.y + delta
+
+        rect = rg.Rectangle(upperleft, lowerright)
+        rect.attach_to(win)
+
+    win.render()
 
 
 # ----------------------------------------------------------------------
