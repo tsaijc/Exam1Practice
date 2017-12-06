@@ -93,7 +93,7 @@ def sum_of_digits(number):
 def run_test_problem1a():
     """ Tests the   problem1a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   4   ** tests (we wrote two for you).
     # ------------------------------------------------------------------
@@ -126,6 +126,18 @@ def run_test_problem1a():
     # Below this comment, add 2 more test cases of your own choosing.
     # ------------------------------------------------------------------
 
+    expected = -1.7286  # This is APPROXIMATELY the correct answer.
+    answer = problem1a(2, 7)
+    print()
+    print('Test 3 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+
+    expected = 0.69237  # This is APPROXIMATELY the correct answer.
+    answer = problem1a(10, 14)
+    print()
+    print('Test 4 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+
 
 def problem1a(m, n):
     """
@@ -145,7 +157,7 @@ def problem1a(m, n):
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -154,14 +166,17 @@ def problem1a(m, n):
     #    TIME ESTIMATE:   10 minutes.
     # ------------------------------------------------------------------
 
-    for k in range((n**2)-(m**2)+1):
-        answer = sum_of_digits(math.sin(k+(m+1)))
-    return answer
+    n = n**2
+    m = m**2
+    total = 0
+    for k in range(n-m+1):
+        total = total + math.sin(k+m)
+    return total
 
 def run_test_problem1b():
     """ Tests the   problem1b   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  problem1b  function defined below.
     #   Include at least **   4   ** tests.
     # ------------------------------------------------------------------
@@ -175,6 +190,29 @@ def run_test_problem1b():
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
 
+    expected = 5
+    answer = problem1b(3, 5)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 30
+    answer = problem1b(10, 14)
+    print()
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 7
+    answer = problem1b(2, 9)
+    print()
+    print('Test 3 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 26
+    answer = problem1b(8, 15)
+    print()
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
 
 def problem1b(m, f):
     """
@@ -193,7 +231,7 @@ def problem1b(m, f):
            since there are 44 primes between 5 and 200.
      """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     ####################################################################
@@ -206,6 +244,12 @@ def problem1b(m, f):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
+    count = 0
+    for k in range((f*m)-m+1):
+        if is_prime(m+k):
+            count = count + 1
+    return count
 
 
 def run_test_problem1c():
@@ -290,7 +334,7 @@ def problem1c(n):
            and the sum of the digits in 223092870 is 33.
     """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # DONE: 6. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -304,6 +348,13 @@ def problem1c(n):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 20 minutes.
     # ------------------------------------------------------------------
+
+    count = 1
+    for k in range(n-1): #starts from 2, so n - 2 and then +1 to get the last number since it starts from 0.
+        if is_prime(2+k):
+            count = count * (2+k)
+    return sum_of_digits(count)
+
 
 
 # ----------------------------------------------------------------------
