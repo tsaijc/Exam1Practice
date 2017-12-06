@@ -155,7 +155,7 @@ def problem1a(m, n):
     # ------------------------------------------------------------------
 
     for k in range((n**2)-(m**2)+1):
-        answer = sum_of_digits(math.sin(k))
+        answer = sum_of_digits(math.sin(k+(m+1)))
     return answer
 
 def run_test_problem1b():
